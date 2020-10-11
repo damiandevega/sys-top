@@ -4,7 +4,13 @@ const { mem } = require('node-os-utils');
 const cpu = osu.cpu;
 const os = osu.os;
 
-let cpuOverload = 80;
+let cpuOverload = 5;
+
+notifyUser({
+  title: 'CPU Overload',
+  body: `CPU is over ${cpuOverload}%`,
+  icon: path.join(__dirname, 'img', 'icon.png'),
+});
 
 // Run every 2 seconds
 setInterval(() => {
@@ -45,7 +51,7 @@ mem.info().then((info) => {
 });
 
 // Show days, hours, minutes and seconds
-const secondsToDhms = (seconds) => {
+function secondsToDhms(seconds) {
   seconds = +seconds;
   const day = Math.floor(seconds / (3600 * 24));
   const hour = Math.floor((seconds % (3600 * 24)) / 3600);
@@ -53,4 +59,9 @@ const secondsToDhms = (seconds) => {
   const second = Math.floor(seconds % 60);
 
   return `${day}d, ${hour}h, ${minute}m, ${second}s`;
-};
+}
+
+// Send notification
+function notifyUser(options) {
+  new Notification(options.title, options);
+}
