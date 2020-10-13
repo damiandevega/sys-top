@@ -4,8 +4,8 @@ const { mem } = require('node-os-utils');
 const cpu = osu.cpu;
 const os = osu.os;
 
-let cpuOverload = 80; // in percentage
-let alertFrequency = 5; // in minutes
+let cpuOverload = 90; // in percentage
+let alertFrequency = 1; // in minutes
 
 // Run every 2 seconds
 setInterval(() => {
