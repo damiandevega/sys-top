@@ -1,4 +1,4 @@
-const { ipcRenderer } = require('electron');
+// ipcRenderer declared in monitor.js
 const settingsForm = document.getElementById('settings-form');
 
 const cpuOverloadEl = document.getElementById('cpu-overload');

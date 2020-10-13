@@ -1,11 +1,18 @@
 const path = require('path');
+const { ipcRenderer } = require('electron');
 const osu = require('node-os-utils');
 const { mem } = require('node-os-utils');
 const cpu = osu.cpu;
 const os = osu.os;
 
-let cpuOverload = 90; // in percentage
-let alertFrequency = 1; // in minutes
+let cpuOverload; // in percentage
+let alertFrequency; // in minutes
+
+// Get settings and values
+ipcRenderer.on('settings:get', (e, settings) => {
+  cpuOverload = +settings.cpuOverload;
+  alertFrequency = +settings.alertFrequency;
+});
 
 // Run every 2 seconds
 setInterval(() => {
