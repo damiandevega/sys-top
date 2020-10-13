@@ -1,5 +1,6 @@
 // ipcRenderer declared in monitor.js
 const settingsForm = document.getElementById('settings-form');
+const nav = document.getElementById('nav');
 
 const cpuOverloadEl = document.getElementById('cpu-overload');
 const alertFrequencyEl = document.getElementById('alert-frequency');
@@ -34,3 +35,8 @@ function showAlert(msg) {
 
   setTimeout(() => alert.classList.add('hide'), 3000);
 }
+
+// Toggle nav
+ipcRenderer.on('nav:toggle', () => {
+  nav.classList.toggle('hide');
+});
